@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simpleway.frst.mapper.SmConstValueMapper" >
+  <resultMap id="BaseResultMap" type="com.simpleway.frst.domain.dto.SmConstValue" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="const_type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="const_value" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="const_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sort" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+
+
+
+
+  <select id="pageConstValue" resultMap="BaseResultMap" parameterType="com.simpleway.frst.request.constinfo.ConstValueWhere">
+    select
+    id, const_type_id,  const_value, const_desc, sort
+    from
+    sm_const_value
+
+    where 1=1
+
+    <if test="constTypeId != null and constTypeId != ''">
+      and const_type_id = #{constTypeId, jdbcType=BIGINT}
+    </if>
+
+    <if test="orders != null">
+      <foreach collection="orders" item="sort" index="index" open="ORDER BY">
+        ${sort.field} ${sort.direction}
+      </foreach>
+    </if>
+  </select>
+
+  <delete id="deleteConstValueByTypeId" parameterType="java.lang.Long">
+    delete from sm_const_value
+    where const_type_id = #{constTypeId,jdbcType=BIGINT}
+  </delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simpleway.frst.mapper.LoanCompanyAccountMapper">
+	<resultMap id="BaseResultMap"
+		type="com.simpleway.frst.domain.dto.LoanCompanyAccount">
+		<constructor>
+			<idArg column="account_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+			<arg column="company_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+			<arg column="company_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="bank" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="bank_account" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="account_property" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		account_id, company_id, company_name, bank, bank_account, account_property,
+		state,
+		remark
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.simpleway.frst.domain.dto.LoanCompanyAccountExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from t_loan_company_account
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from t_loan_company_account
+		where account_id = #{accountId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from t_loan_company_account
+		where account_id = #{accountId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.simpleway.frst.domain.dto.LoanCompanyAccount">
+		insert into t_loan_company_account (account_id, company_id,
+		company_name,
+		bank, bank_account, account_property,
+		state, remark)
+		values (#{accountId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT},
+		#{companyName,jdbcType=VARCHAR},
+		#{bank,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, #{accountProperty,jdbcType=INTEGER},
+		#{state,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.simpleway.frst.domain.dto.LoanCompanyAccount">
+		insert into t_loan_company_account
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				account_id,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+			<if test="companyName != null">
+				company_name,
+			</if>
+			<if test="bank != null">
+				bank,
+			</if>
+			<if test="bankAccount != null">
+				bank_account,
+			</if>
+			<if test="accountProperty != null">
+				account_property,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				#{accountId,jdbcType=BIGINT},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=BIGINT},
+			</if>
+			<if test="companyName != null">
+				#{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="accountProperty != null">
+				#{accountProperty,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.simpleway.frst.domain.dto.LoanCompanyAccount">
+		update t_loan_company_account
+		<set>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=BIGINT},
+			</if>
+			<if test="companyName != null">
+				company_name = #{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				bank = #{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				bank_account = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="accountProperty != null">
+				account_property = #{accountProperty,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where account_id = #{accountId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.simpleway.frst.domain.dto.LoanCompanyAccount">
+		update t_loan_company_account
+		set company_id = #{companyId,jdbcType=BIGINT},
+		company_name = #{companyName,jdbcType=VARCHAR},
+		bank = #{bank,jdbcType=VARCHAR},
+		bank_account = #{bankAccount,jdbcType=VARCHAR},
+		account_property = #{accountProperty,jdbcType=INTEGER},
+		state = #{state,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR}
+		where account_id = #{accountId,jdbcType=BIGINT}
+	</update>
+
+	<select id="getAreaCompanyInfo" resultType="java.util.HashMap">
+		SELECT area.area_id,
+		account.bank_account
+		FROM
+		t_loan_company_account account,
+		t_loan_company_info company,
+		sm_area area
+		WHERE
+		account.company_id = company.company_id
+		AND company.area_id = area.area_id
+		GROUP BY
+		area.area_id;
+	</select>
+</mapper>

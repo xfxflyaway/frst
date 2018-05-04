@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.simpleway.frst.mapper.LoanBusinessInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.simpleway.frst.domain.dto.LoanBusinessInfo">
+		<constructor>
+			<idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+			<arg column="loan_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<arg column="loan_account_no" javaType="java.lang.String"
+				jdbcType="VARCHAR" />
+			<arg column="loan_identify" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<arg column="loan_amount" javaType="java.math.BigDecimal"
+				jdbcType="DECIMAL" />
+			<arg column="bank_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<arg column="company_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+			<arg column="return_month" javaType="java.lang.Integer" jdbcType="INTEGER" />
+			<arg column="return_day" javaType="java.lang.Integer" jdbcType="INTEGER" />
+			<arg column="one_amount" javaType="java.math.BigDecimal"
+				jdbcType="DECIMAL" />
+			<arg column="begin_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+			<arg column="end_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+			<arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+			<arg column="state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+		</constructor>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, loan_name, loan_account_no, loan_identify, loan_amount, bank_account,
+		company_id,
+		return_month, return_day, one_amount, begin_date, end_date, create_time, state
+	</sql>
+	<select id="selectByExample"
+		parameterType="com.simpleway.frst.domain.dto.LoanBusinessInfoExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from t_loan_business_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_loan_business_info
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from t_loan_business_info
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.simpleway.frst.domain.dto.LoanBusinessInfo">
+		insert into t_loan_business_info (id, loan_name, loan_account_no,
+		loan_identify, loan_amount, bank_account,
+		company_id, return_month, return_day,
+		one_amount, begin_date, end_date,
+		create_time, state)
+		values (#{id,jdbcType=BIGINT}, #{loanName,jdbcType=VARCHAR},
+		#{loanAccountNo,jdbcType=VARCHAR},
+		#{loanIdentify,jdbcType=VARCHAR}, #{loanAmount,jdbcType=DECIMAL}, #{bankAccount,jdbcType=VARCHAR},
+		#{companyId,jdbcType=BIGINT}, #{returnMonth,jdbcType=INTEGER},
+		#{returnDay,jdbcType=INTEGER},
+		#{oneAmount,jdbcType=DECIMAL}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.simpleway.frst.domain.dto.LoanBusinessInfo">
+		insert into t_loan_business_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="loanName != null">
+				loan_name,
+			</if>
+			<if test="loanAccountNo != null">
+				loan_account_no,
+			</if>
+			<if test="loanIdentify != null">
+				loan_identify,
+			</if>
+			<if test="loanAmount != null">
+				loan_amount,
+			</if>
+			<if test="bankAccount != null">
+				bank_account,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+			<if test="returnMonth != null">
+				return_month,
+			</if>
+			<if test="returnDay != null">
+				return_day,
+			</if>
+			<if test="oneAmount != null">
+				one_amount,
+			</if>
+			<if test="beginDate != null">
+				begin_date,
+			</if>
+			<if test="endDate != null">
+				end_date,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="loanName != null">
+				#{loanName,jdbcType=VARCHAR},
+			</if>
+			<if test="loanAccountNo != null">
+				#{loanAccountNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanIdentify != null">
+				#{loanIdentify,jdbcType=VARCHAR},
+			</if>
+			<if test="loanAmount != null">
+				#{loanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=BIGINT},
+			</if>
+			<if test="returnMonth != null">
+				#{returnMonth,jdbcType=INTEGER},
+			</if>
+			<if test="returnDay != null">
+				#{returnDay,jdbcType=INTEGER},
+			</if>
+			<if test="oneAmount != null">
+				#{oneAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="beginDate != null">
+				#{beginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				#{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.simpleway.frst.domain.dto.LoanBusinessInfo">
+		update t_loan_business_info
+		<set>
+			<if test="loanName != null">
+				loan_name = #{loanName,jdbcType=VARCHAR},
+			</if>
+			<if test="loanAccountNo != null">
+				loan_account_no = #{loanAccountNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanIdentify != null">
+				loan_identify = #{loanIdentify,jdbcType=VARCHAR},
+			</if>
+			<if test="loanAmount != null">
+				loan_amount = #{loanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="bankAccount != null">
+				bank_account = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=BIGINT},
+			</if>
+			<if test="returnMonth != null">
+				return_month = #{returnMonth,jdbcType=INTEGER},
+			</if>
+			<if test="returnDay != null">
+				return_day = #{returnDay,jdbcType=INTEGER},
+			</if>
+			<if test="oneAmount != null">
+				one_amount = #{oneAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="beginDate != null">
+				begin_date = #{beginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.simpleway.frst.domain.dto.LoanBusinessInfo">
+		update t_loan_business_info
+		set loan_name = #{loanName,jdbcType=VARCHAR},
+		loan_account_no = #{loanAccountNo,jdbcType=VARCHAR},
+		loan_identify = #{loanIdentify,jdbcType=VARCHAR},
+		loan_amount = #{loanAmount,jdbcType=DECIMAL},
+		bank_account = #{bankAccount,jdbcType=VARCHAR},
+		company_id = #{companyId,jdbcType=BIGINT},
+		return_month = #{returnMonth,jdbcType=INTEGER},
+		return_day = #{returnDay,jdbcType=INTEGER},
+		one_amount = #{oneAmount,jdbcType=DECIMAL},
+		begin_date = #{beginDate,jdbcType=TIMESTAMP},
+		end_date = #{endDate,jdbcType=TIMESTAMP},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		state = #{state,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="getByLoanAccountNo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		t_loan_business_info where loan_account_no = #{loanAccountNo,jdbcType=VARCHAR}
+	</select>
+	<select id="loanTotalInfo" resultMap="BaseResultMap">
+		select company_id,sum(loan_amount) loan_amount from (select * from
+		t_loan_business_info
+		where date_format(create_time,'%Y-%m')=DATE_FORMAT(DATE_SUB(CURDATE(),
+		INTERVAL 1 MONTH),'%Y%m'))t
+		group by company_id
+	</select>
+	
+	<select id="loanCount" resultType="java.util.HashMap">
+		SELECT count(loan_amount)
+		count
+		,a.area_name areaName from t_loan_business_info
+		b,t_loan_company_info
+		c,sm_area a
+		where c.area_id=a.area_id
+		and
+		b.company_id=c.company_id
+		and date(b.create_time)='2017-10-23'
+		group by
+		a.area_id
+	</select>
+	<select id="loanCapital" resultType="java.util.HashMap">
+		SELECT sum(loan_amount)
+		amount ,a.area_name areaName from t_loan_business_info
+		b,t_loan_company_info c,sm_area a
+		where c.area_id=a.area_id
+		and b.company_id=c.company_id
+		and date(b.create_time)='2017-10-23'
+		group by a.area_id
+	</select>
+
+	<select id="getLoanBusinessTotalCount" resultType="integer">
+		SELECT count(*) from t_loan_business_info
+	</select>
+
+</mapper>

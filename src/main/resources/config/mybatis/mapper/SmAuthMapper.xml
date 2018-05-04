@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simpleway.frst.mapper.SmAuthMapper">
+	<resultMap id="BaseResultMap" type="com.simpleway.frst.domain.dto.SmAuth">
+		<constructor>
+			<idArg column="auth_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+			<arg column="auth_inner_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="auth_out_code" jdbcType="CHAR" javaType="java.lang.String" />
+			<arg column="auth_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="auth_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="upper_auth_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+			<arg column="auth_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="sort" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="auth_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+			<arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+			<arg column="icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		auth_id, auth_inner_code, auth_out_code, auth_name,
+		auth_url, state,
+		upper_auth_id,
+		auth_type, sort, auth_desc, create_time,
+		update_time,icon
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.simpleway.frst.domain.dto.SmAuthExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from sm_auth
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from sm_auth
+		where auth_id = #{authId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		sm_auth
+		where auth_id = #{authId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.simpleway.frst.domain.dto.SmAuth">
+		insert into sm_auth (auth_id,
+		auth_inner_code, auth_out_code,
+		auth_name, auth_url, state,
+		upper_auth_id, auth_type, sort,
+		auth_desc, create_time,
+		update_time,icon
+		)
+		values (#{authId,jdbcType=BIGINT},
+		#{authInnerCode,jdbcType=VARCHAR},
+		#{authOutCode,jdbcType=CHAR},
+		#{authName,jdbcType=VARCHAR},
+		#{authUrl,jdbcType=VARCHAR},
+		#{state,jdbcType=INTEGER},
+		#{upperAuthId,jdbcType=BIGINT},
+		#{authType,jdbcType=INTEGER},
+		#{sort,jdbcType=INTEGER},
+		#{authDesc,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{icon,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.simpleway.frst.domain.dto.SmAuth">
+		insert into sm_auth
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="authId != null">
+				auth_id,
+			</if>
+			<if test="authInnerCode != null">
+				auth_inner_code,
+			</if>
+			<if test="authOutCode != null">
+				auth_out_code,
+			</if>
+			<if test="authName != null">
+				auth_name,
+			</if>
+			<if test="authUrl != null">
+				auth_url,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="upperAuthId != null">
+				upper_auth_id,
+			</if>
+			<if test="authType != null">
+				auth_type,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="authDesc != null">
+				auth_desc,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="icon != null">
+				icon,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="authId != null">
+				#{authId,jdbcType=BIGINT},
+			</if>
+			<if test="authInnerCode != null">
+				#{authInnerCode,jdbcType=VARCHAR},
+			</if>
+			<if test="authOutCode != null">
+				#{authOutCode,jdbcType=CHAR},
+			</if>
+			<if test="authName != null">
+				#{authName,jdbcType=VARCHAR},
+			</if>
+			<if test="authUrl != null">
+				#{authUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+			<if test="upperAuthId != null">
+				#{upperAuthId,jdbcType=BIGINT},
+			</if>
+			<if test="authType != null">
+				#{authType,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="authDesc != null">
+				#{authDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.simpleway.frst.domain.dto.SmAuth">
+		update sm_auth
+		<set>
+			<if test="authInnerCode != null">
+				auth_inner_code = #{authInnerCode,jdbcType=VARCHAR},
+			</if>
+			<if test="authOutCode != null">
+				auth_out_code = #{authOutCode,jdbcType=CHAR},
+			</if>
+			<if test="authName != null">
+				auth_name = #{authName,jdbcType=VARCHAR},
+			</if>
+			<if test="authUrl != null">
+				auth_url = #{authUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+			<if test="upperAuthId != null">
+				upper_auth_id = #{upperAuthId,jdbcType=BIGINT},
+			</if>
+			<if test="authType != null">
+				auth_type = #{authType,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="authDesc != null">
+				auth_desc = #{authDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="icon != null">
+				icon = #{icon,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where auth_id = #{authId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.simpleway.frst.domain.dto.SmAuth">
+		update sm_auth
+		set
+		auth_inner_code = #{authInnerCode,jdbcType=VARCHAR},
+		auth_out_code =
+		<!-- #{authOutCode,jdbcType=CHAR}, -->
+		auth_name = #{authName,jdbcType=VARCHAR},
+		auth_url =
+		#{authUrl,jdbcType=VARCHAR},
+		state =
+		#{state,jdbcType=INTEGER},
+		upper_auth_id =
+		#{upperAuthId,jdbcType=BIGINT},
+		auth_type =
+		#{authType,jdbcType=INTEGER},
+		sort = #{sort,jdbcType=INTEGER},
+		auth_desc = #{authDesc,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		icon = #{icon,jdbcType=VARCHAR},
+		where auth_id =
+		#{authId,jdbcType=BIGINT}
+	</update>
+
+	<select id="findPermByRoleId" resultMap="BaseResultMap">
+		SELECT * FROM sm_auth
+		p,sm_role_auth pr WHERE p.auth_id=pr.auth_id
+		AND pr.role_id=#{roleId}
+		group by p.auth_id
+	</select>
+
+	<select id="findSmAuthMenuListByUserId" resultMap="BaseResultMap">
+		SELECT * FROM sm_auth WHERE auth_type=1
+		<if test="type!= 1">
+			AND auth_id IN
+			(SELECT ra.auth_id FROM sm_role_auth
+			ra,sm_user_role
+			ur
+			WHERE
+			ra.role_id =ur.role_id
+			AND
+			ur.login_id=#{loginId}
+			GROUP BY auth_id)
+		</if>
+		ORDER BY sort
+	</select>
+
+	<select id="findSmAuthListByUserId" resultMap="BaseResultMap">
+		SELECT * FROM
+		sm_auth WHERE auth_id IN
+		(SELECT ra.auth_id FROM sm_role_auth
+		ra,sm_user_role
+		ur WHERE
+		ra.role_id =ur.role_id
+		AND
+		ur.login_id=#{loginId}
+		GROUP BY auth_id)
+		ORDER BY sort
+	</select>
+
+</mapper>

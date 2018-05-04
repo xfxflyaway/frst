@@ -1,0 +1,361 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.carnet</groupId>
+		<artifactId>carnet-base-dependency</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.simpleway</groupId>
+	<artifactId>frst</artifactId>
+	<version>1.0</version>
+
+
+
+	<properties>
+		<shiro.version>1.2.3</shiro.version>
+		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+		<compiler-plugin.source.version>1.8</compiler-plugin.source.version>
+		<compiler-plugin.target.version>1.8</compiler-plugin.target.version>
+	</properties>
+
+	<dependencies>
+		<!-- <dependency> <groupId>org.crazycake</groupId> <artifactId>shiro-redis</artifactId> 
+			<version>2.4.2.1-RELEASE</version> </dependency> -->
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<!-- 微服务 -->
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.seaky</groupId>
+			<artifactId>hamster-spring</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.microsoft.sqlserver</groupId> -->
+<!-- 			<artifactId>sqljdbc4</artifactId> -->
+<!-- 			<version>4.0</version> -->
+<!-- 		</dependency> -->
+	<!-- <dependency> -->
+	<!-- <groupId>net.sourceforge.jtds</groupId> -->
+	<!-- <artifactId>jtds</artifactId> -->
+	<!-- <version>1.3.1</version> -->
+	<!-- </dependency> -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.13</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.poi</groupId> -->
+		<!-- <artifactId>poi-ooxml</artifactId> -->
+		<!-- <version>3.13</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.poi</groupId> -->
+		<!-- <artifactId>poi-ooxml-schemas</artifactId> -->
+		<!-- <version>3.13</version> -->
+		<!-- </dependency> -->
+
+		<!-- insert by thb 2017-2-7 -->
+		<!-- insert by thb 2017-2-7 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.13</version>
+		</dependency>
+		<!-- insert by thb 2017-2-8 -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.yuntu</groupId> -->
+<!-- 			<artifactId>yuntu-aliyun-oss</artifactId> -->
+<!-- 			<version>1.0.1-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
+
+		<!-- -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.rocketmq</groupId> -->
+		<!-- <artifactId>rocketmq-client</artifactId> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper</artifactId>
+			<version>3.3.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+
+		<!-- quartz -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.quartz-scheduler</groupId> -->
+		<!-- <artifactId>quartz</artifactId> -->
+		<!-- <version>2.2.2</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.quartz-scheduler</groupId> -->
+		<!-- <artifactId>quartz-jobs</artifactId> -->
+		<!-- <version>2.2.2</version> -->
+		<!-- </dependency> -->
+
+		<!-- shiro -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-quartz</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+
+		<!-- thymeleaf -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.thymeleaf</groupId> -->
+<!-- 			<artifactId>thymeleaf</artifactId> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.thymeleaf</groupId> -->
+<!-- 			<artifactId>thymeleaf-spring4</artifactId> -->
+<!-- 		</dependency> -->
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>com.yuntu</groupId> -->
+		<!-- <artifactId>guid-generator-api</artifactId> -->
+		<!-- <version>1.0.0-SNAPSHOT</version> -->
+		<!-- </dependency> -->
+
+
+		<!-- <dependency> -->
+		<!-- <groupId>com.yuntu.carnet.business</groupId> -->
+		<!-- <artifactId>carnet-business-api</artifactId> -->
+		<!-- <version>1.0.0-SNAPSHOT</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>com.carnet</groupId> -->
+		<!-- <artifactId>carnet-device-data-api</artifactId> -->
+		<!-- <version>1.0.1-SNAPSHOT</version> -->
+		<!-- </dependency> -->
+
+		<!-- weixin tools -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.github.binarywang</groupId> -->
+<!-- 			<artifactId>weixin-java-mp</artifactId> -->
+<!-- 			<version>2.4.0</version> -->
+<!-- 		</dependency> -->
+		<!-- 微信支付 -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.yuntu.wxpay.api</groupId> -->
+<!-- 			<artifactId>ytcarnet-weixin-pay-api</artifactId> -->
+<!-- 			<version>1.0.0-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
+
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.yuntu.carnet</groupId> -->
+<!-- 			<artifactId>ytcarnet-device-data-api</artifactId> -->
+<!-- 			<version>1.0.1-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.yuntu</groupId> -->
+<!-- 			<artifactId>yuntu-aliyun-oss</artifactId> -->
+<!-- 			<version>1.0.1-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
+		
+		<dependency>
+			<groupId>com.yuntu</groupId>
+			<artifactId>yuntu-commons</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.seaky</groupId>
+					<artifactId>centralconf-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.38</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.5</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<finalName>frst</finalName>
+		<plugins>
+			<!-- 编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${compiler-plugin.source.version}</source>
+					<target>${compiler-plugin.target.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.simpleway.frst.App</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>sw-rep</id>
+			<url>http://116.62.118.104:8018/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			
+		</repository>
+	</repositories>
+</project>

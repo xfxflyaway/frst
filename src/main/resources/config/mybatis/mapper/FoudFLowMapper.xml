@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simpleway.frst.mapper.FundFlowMapper">
+	<resultMap id="BaseResultMap" type="com.simpleway.frst.domain.dto.FundFlow">
+		<constructor>
+			<idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+			<arg column="inflow_area_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+			<arg column="outflow_area_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+			<arg column="inflow_amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+			<arg column="count_day" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+			<arg column="in_out_flag" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+
+
+
+	<insert id="batchInsert">
+		insert into t_fund_flow
+		(id,inflow_area_id,outflow_area_id,inflow_amount,count_day,in_out_flag)
+		values
+		<foreach collection="list" index="index" item="item" open="("
+			separator="),(" close=")">
+			#{item.id},
+			#{item.inflowAreaId},
+			#{item.outflowAreaId},
+			#{item.inflowAmount},
+			#{item.countDay},
+			#{item.inOutFlag}
+		</foreach>
+	</insert>
+
+
+	<select id="selectFundFlowByDay" resultMap="BaseResultMap">
+	select * from
+	t_fund_flow
+	WHERE date(count_day) = #{date}
+	</select>
+
+	
+	
+	<select id="investCount" resultType="java.util.HashMap">
+		select
+		count(inflow_amount) count,a.area_name areaName from t_fund_flow f,sm_area a
+		WHERE
+		date(f.count_day) = #{date}
+		and f.in_out_flag='汇入'
+		and
+		a.area_id=f.inflow_area_id
+		group by inflow_area_id
+	</select>
+	
+	<select id="investCapital" resultType="java.util.HashMap">
+		select
+		sum(inflow_amount) amount,a.area_name areaName from t_fund_flow f,sm_area a
+		WHERE
+		date(f.count_day) = #{date}
+		and f.in_out_flag='汇入'
+		and
+		a.area_id=f.inflow_area_id
+		group by inflow_area_id
+	</select>
+
+
+</mapper>

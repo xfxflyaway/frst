@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simpleway.frst.mapper.SmOperateInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.simpleway.frst.domain.dto.SmOperateInfo" >
+    <constructor >
+      <idArg column="operate_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="operate_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="operate_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="action_man" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    operate_id, table_name, operate_desc, operate_type, update_time, action_man
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.simpleway.frst.domain.dto.SmOperateInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sm_operate_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sm_operate_info
+    where operate_id = #{operateId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sm_operate_info
+    where operate_id = #{operateId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.simpleway.frst.domain.dto.SmOperateInfo" >
+    insert into sm_operate_info (operate_id, table_name, operate_desc, 
+      operate_type, update_time, action_man
+      )
+    values (#{operateId,jdbcType=BIGINT}, #{tableName,jdbcType=VARCHAR}, #{operateDesc,jdbcType=VARCHAR}, 
+      #{operateType,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{actionMan,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.simpleway.frst.domain.dto.SmOperateInfo" >
+    insert into sm_operate_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operateId != null" >
+        operate_id,
+      </if>
+      <if test="tableName != null" >
+        table_name,
+      </if>
+      <if test="operateDesc != null" >
+        operate_desc,
+      </if>
+      <if test="operateType != null" >
+        operate_type,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="actionMan != null" >
+        action_man,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operateId != null" >
+        #{operateId,jdbcType=BIGINT},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDesc != null" >
+        #{operateDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null" >
+        #{operateType,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionMan != null" >
+        #{actionMan,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.simpleway.frst.domain.dto.SmOperateInfo" >
+    update sm_operate_info
+    <set >
+      <if test="tableName != null" >
+        table_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDesc != null" >
+        operate_desc = #{operateDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operateType != null" >
+        operate_type = #{operateType,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionMan != null" >
+        action_man = #{actionMan,jdbcType=BIGINT},
+      </if>
+    </set>
+    where operate_id = #{operateId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.simpleway.frst.domain.dto.SmOperateInfo" >
+    update sm_operate_info
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      operate_desc = #{operateDesc,jdbcType=VARCHAR},
+      operate_type = #{operateType,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      action_man = #{actionMan,jdbcType=BIGINT}
+    where operate_id = #{operateId,jdbcType=BIGINT}
+  </update>
+</mapper>

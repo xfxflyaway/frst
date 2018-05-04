@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simpleway.frst.mapper.WarnInfoMapper">
+    <resultMap id="BaseResultMap" type="com.simpleway.frst.domain.dto.WarnInfo">
+        <constructor>
+            <idArg column="warn_id" jdbcType="BIGINT" javaType="java.lang.Long"/>
+            <arg column="company_id" jdbcType="BIGINT" javaType="java.lang.Long"/>
+            <arg column="company_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="warn_type" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="warn_amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="warn_busi_id" jdbcType="BIGINT" javaType="java.lang.Long"/>
+            <arg column="warn_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="warn_desc" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and
+                                    #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem"
+                                             open="(" close=")" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        warn_id, company_id, company_name, warn_type, warn_amount, warn_busi_id,
+        warn_time,
+        warn_desc
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.simpleway.frst.domain.dto.WarnInfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from t_warn_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_warn_info
+        where warn_id = #{warnId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_warn_info
+        where warn_id = #{warnId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.simpleway.frst.domain.dto.WarnInfo">
+        insert into t_warn_info (warn_id, company_id, company_name,
+        warn_type, warn_amount, warn_busi_id,
+        warn_time, warn_desc)
+        values (#{warnId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT},
+        #{companyName,jdbcType=VARCHAR},
+        #{warnType,jdbcType=INTEGER}, #{warnAmount,jdbcType=DECIMAL}, #{warnBusiId,jdbcType=BIGINT},
+        #{warnTime,jdbcType=TIMESTAMP}, #{warnDesc,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.simpleway.frst.domain.dto.WarnInfo">
+        insert into t_warn_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="warnId != null">
+                warn_id,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="warnType != null">
+                warn_type,
+            </if>
+            <if test="warnAmount != null">
+                warn_amount,
+            </if>
+            <if test="warnBusiId != null">
+                warn_busi_id,
+            </if>
+            <if test="warnTime != null">
+                warn_time,
+            </if>
+            <if test="warnDesc != null">
+                warn_desc,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="warnId != null">
+                #{warnId,jdbcType=BIGINT},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="warnType != null">
+                #{warnType,jdbcType=INTEGER},
+            </if>
+            <if test="warnAmount != null">
+                #{warnAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="warnBusiId != null">
+                #{warnBusiId,jdbcType=BIGINT},
+            </if>
+            <if test="warnTime != null">
+                #{warnTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="warnDesc != null">
+                #{warnDesc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.simpleway.frst.domain.dto.WarnInfo">
+        update t_warn_info
+        <set>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="warnType != null">
+                warn_type = #{warnType,jdbcType=INTEGER},
+            </if>
+            <if test="warnAmount != null">
+                warn_amount = #{warnAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="warnBusiId != null">
+                warn_busi_id = #{warnBusiId,jdbcType=BIGINT},
+            </if>
+            <if test="warnTime != null">
+                warn_time = #{warnTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="warnDesc != null">
+                warn_desc = #{warnDesc,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where warn_id = #{warnId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.simpleway.frst.domain.dto.WarnInfo">
+        update t_warn_info
+        set company_id = #{companyId,jdbcType=BIGINT},
+        company_name = #{companyName,jdbcType=VARCHAR},
+        warn_type = #{warnType,jdbcType=INTEGER},
+        warn_amount = #{warnAmount,jdbcType=DECIMAL},
+        warn_busi_id = #{warnBusiId,jdbcType=BIGINT},
+        warn_time = #{warnTime,jdbcType=TIMESTAMP},
+        warn_desc = #{warnDesc,jdbcType=VARCHAR}
+        where warn_id = #{warnId,jdbcType=BIGINT}
+    </update>
+
+    <select id="warnReport" resultMap="BaseResultMap">
+        select company_id,warn_type,sum(warn_amount) warn_amount from (select * from
+        t_warn_info where date(warn_time) = (curdate()-1)) t
+        group by company_id,warn_type ;
+    </select>
+
+
+    <select id="getBusinessWarnInfoCountDistinct" resultType="int" >
+        SELECT
+        count(DISTINCT warn_busi_id) count
+        FROM
+        t_warn_info
+        WHERE
+        warn_type = 1
+    </select>
+
+</mapper>
